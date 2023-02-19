@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SonarrServiceService } from './sonarr-service.service';
+import { SonarrService } from './sonarr.service';
 
 @NgModule({
   declarations: [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SonarrServiceService } from './sonarr-service.service';
+import { SonarrService } from './sonarr.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { SonarrServiceService } from './sonarr-service.service';
 export class AppComponent {
   title = 'gatarr.angular';
 
-  constructor(private service: SonarrServiceService) {
+  constructor(private service: SonarrService) {
     var test = this.service.getSeries().subscribe();
     console.log(test);
   }

@@ -75,29 +75,23 @@ interface Series {
   providedIn: 'root'
 })
 
-export class SonarrServiceService {
-  private host: string;
-  private port: number;
-  private apiVersion: string;
-  private apiKey: string;
-
+export class SonarrService {
+  private baseUrl: string;
   private headers: HttpHeaders;
 
   constructor(private http: HttpClient) { 
-    this.host = "192.168.68.61";
-    this.port = 8989;
-    this.apiVersion = "v3";
-    this.apiKey = "80705402a8e345b880be69f04a0afc82";
-    
-    this.headers = new HttpHeaders();
-    this.headers.set("X-Api-Key", this.apiKey);
+    this.baseUrl = "http://192.168.68.61:8989/api/v3";
+
+    this.headers = new HttpHeaders()
+      .set("X-Api-Key", "80705402a8e345b880be69f04a0afc82")
+      .set('Access-Control-Allow-Origin', '*');
   }
 
   getSeries() {
-    return this.http.get<Series>(`http://${this.host}:${this.port}/api/${this.apiVersion}/series`, { headers: this.headers });
+    return this.http.get<Series>(`${this.baseUrl}/series`, { headers: this.headers });
   }
 
   getSeriesById(id: number) {
-    return this.http.get<Series>(`http://${this.host}:${this.port}/api/${this.apiVersion}/series/${id}}`);
+    return this.http.get<Series>(`${this.baseUrl}/series/${id}}`, { headers: this.headers });
   }
 }
