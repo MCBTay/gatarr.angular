@@ -7,7 +7,7 @@ import { SonarrService } from '../sonarr.service';
   imports: [
     CommonModule
   ],
-  
+  exports: [SonarrComponent],
   declarations: [SonarrComponent]
 })
 export class SonarrModule { }
