@@ -5,13 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatCardModule} from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+
 import { SonarrModule } from "./sonarr/sonarr.module";
 import { RadarrModule } from './radarr/radarr.module';
 import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
-    declarations: [	
+    declarations: [		
         AppComponent
    ],
     providers: [],
@@ -21,7 +24,10 @@ import { SettingsModule } from './settings/settings.module';
         HttpClientModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+
+        MatCardModule,
         MatTabsModule,
+        
         SonarrModule,
         RadarrModule,
         SettingsModule
