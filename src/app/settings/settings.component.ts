@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArrSettings } from '../settings-group/arr-settings';
 
 @Component({
   selector: 'app-settings',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
-  constructor() { }
+  public radarrSettings = new ArrSettings();
+  public sonarrSettings = new ArrSettings();
 
   ngOnInit() {
+    // load settings
   }
 
 }
