@@ -1,0 +1,34 @@
+<mat-card>
+  <form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Host</mat-label>
+        <input matInput placeholder="ex. 192.168.1.12" formControlName="host">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>Port</mat-label>
+        <input matInput placeholder="ex. 1234" formControlName="port">
+      </mat-form-field>
+    </p>
+
+    <p>
+      <mat-checkbox formControlName="isSecure">Use HTTPS</mat-checkbox>
+    </p>
+
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>API Key</mat-label>
+        <input matInput placeholder="Enter API Key" formControlName="apiKey">
+      </mat-form-field>
+    </p>
+    
+    <mat-card-actions align="end">
+      <button mat-button type="submit" [disabled]="!settingsForm.valid">SAVE</button>
+    </mat-card-actions>
+
+  </form>
+</mat-card>
