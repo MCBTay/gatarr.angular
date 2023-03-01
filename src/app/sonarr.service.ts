@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import { ArrSettings } from './settings-group/arr-settings';
 
 interface AlternateTitle {
   title: string;
@@ -30,7 +31,7 @@ interface Statistics {
   percentOfEpisodes: number;
 }
 
-interface Series {
+export interface Series {
   title: string;
   alternateTitles: AlternateTitle[];
   sortTitle: string;
@@ -76,19 +77,29 @@ interface Series {
 })
 
 export class SonarrService {
-  private baseUrl: string;
-  private headers: HttpHeaders;
+  private baseUrl: string = "";
+  private headers: HttpHeaders = new HttpHeaders();
+  private settings: ArrSettings = new ArrSettings();
 
   constructor(private http: HttpClient) { 
-    this.baseUrl = "http://192.168.68.61:8989/api/v3";
+    this.initializeFromLocalStorage();
+  }
+
+  initializeFromLocalStorage() {
+    var localStorageSettings = localStorage.getItem("sonarr");
+    if (localStorageSettings == null) return;
+
+    this.settings = JSON.parse(localStorageSettings.toString());
+
+    this.baseUrl = `http${this.settings.isSecure ? "s" : ""}://${this.settings.host}:${this.settings.port}/api/v3`;
 
     this.headers = new HttpHeaders()
-      .set("X-Api-Key", "80705402a8e345b880be69f04a0afc82")
+      .set("X-Api-Key", this.settings.apiKey)
       .set('Access-Control-Allow-Origin', '*');
   }
 
   getSeries() {
-    return this.http.get<Series>(`${this.baseUrl}/series`, { headers: this.headers });
+    return this.http.get<Series[]>(`${this.baseUrl}/series`, { headers: this.headers });
   }
 
   getSeriesById(id: number) {
