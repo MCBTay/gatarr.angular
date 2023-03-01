@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
 import { SonarrService } from './sonarr.service';
 
 @Component({
@@ -7,10 +8,8 @@ import { SonarrService } from './sonarr.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'gatarr.angular';
+  links = ['Sonarr', 'Radarr', 'Settings'];
+  activeLink = this.links[0];
 
-  constructor(private service: SonarrService) {
-    var test = this.service.getSeries().subscribe();
-    console.log(test);
-  }
+  title = 'gatarr.angular';
 }
